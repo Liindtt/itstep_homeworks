@@ -3,7 +3,7 @@ import os
 import json
 
 class Money:
-    def __init__(self, amount, currency):
+    def __init__(self, amount: int, currency: str):
         self.amount = amount
         self.currency = currency
 
@@ -25,10 +25,10 @@ class BankAccount:
         return f"Номер рахунку: {self.__account_number}\nБаланс: {self.balance}$"
 
     def deposit(self, money):
-        self.balance += money
+        self.balance.amount += money
 
     def withdraw(self, money):
-        self.balance -= money
+        self.balance.amount -= money
 
     def change_owner_name(self, new_name: str):
         self.owner_name = new_name
@@ -39,7 +39,7 @@ class BankAccount:
     def transfer(self, to_acc, money):
         print(f"Поточний баланс: {self.balance}")
         try:
-            if self.balance < money:
+            if self.balance.amount < money:
                 raise ValueError("У вас недостатьо грошей на балансі!")
         except ValueError as error:
             print(f"Помилка: {error}")
@@ -49,7 +49,7 @@ class BankAccount:
             if money < 0:
                 raise ValueError("Введена некоректна сума")
 
-            self.balance -= money
+            self.balance.amount -= money
             to_acc.deposit(money)
             print(f"Оновлений баланс: {self.balance}")
 
@@ -138,16 +138,16 @@ class BankAccount:
             else:
                 print("Неможливо конвертувати валюту")
 
+if __name__ == '__main__':
+    acc1 = BankAccount(64547, "Slavik", 15000, 'USD')
+    acc2 = BankAccount(9834, "Miroslav", 25000, 'EUR')
 
-acc1 = BankAccount(64547, "Slavik", 15000, 'USD')
-acc2 = BankAccount(9834, "Miroslav", 25000, 'EUR')
+    matching_accounts = BankAccount.find_accounts_by_owner("Slavik")
+    for account in matching_accounts:
+        account.display_account_info()
 
-matching_accounts = BankAccount.find_accounts_by_owner("Slavik")
-for account in matching_accounts:
-    account.display_account_info()
+    print(f"Середній баланс коштів усіх користувачів: {BankAccount.get_average_balance()}")
 
-print(f"Середній баланс коштів усіх користувачів: {BankAccount.get_average_balance()}")
-
-acc1.transfer_funds(acc2, 300)
-print(acc1.display_account_info())
-print(acc2.display_account_info())
+    acc1.transfer_funds(acc2, 300)
+    print(acc1.display_account_info())
+    print(acc2.display_account_info())
