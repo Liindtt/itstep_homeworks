@@ -1,5 +1,7 @@
 <<<<<<< HEAD
-**/.idea
-=======
+**/.idea/
+*/.idea/
 *.idea
->>>>>>> 4ebf6b74f1acef98ffd30cf70e5d9f77f622ce84
+**/__pycache__/
+**/__pycache__
+*/__pycache__
