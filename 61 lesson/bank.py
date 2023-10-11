@@ -60,8 +60,10 @@ class BankAccount:
     def check_account_number(check_acc_num: int):
         if len(str(check_acc_num)) == 5:
             print("Номер рахунку валідний!")
+            return True
         else:
             print("Номер рахунку не валідний!")
+            return False
 
     def get_account_number(self):
         return self.__account_number
@@ -138,6 +140,7 @@ class BankAccount:
             else:
                 print("Неможливо конвертувати валюту")
 
+
 if __name__ == '__main__':
     acc1 = BankAccount(64547, "Slavik", 15000, 'USD')
     acc2 = BankAccount(9834, "Miroslav", 25000, 'EUR')
@@ -149,5 +152,9 @@ if __name__ == '__main__':
     print(f"Середній баланс коштів усіх користувачів: {BankAccount.get_average_balance()}")
 
     acc1.transfer_funds(acc2, 300)
-    print(acc1.display_account_info())
-    print(acc2.display_account_info())
+    print()
+    acc1.display_account_info()
+    print()
+    acc2.display_account_info()
+    print()
+    acc2.check_account_number(acc2.account_number)
