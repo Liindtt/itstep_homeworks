@@ -145,3 +145,5 @@ while True:
         print()
     elif menu_input == 0:
         break
+    else:
+        print("\nОперації з таким номером не існує!")
