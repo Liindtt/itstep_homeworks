@@ -125,7 +125,7 @@ while True:
         lst.delete_from_start()
         print()
     elif menu_input == 6:
-        user_value = int(input("Введіть значення елементу: "))
+        user_value = int(input("Введіть значення елементу, яке хочете видалити: "))
         user_count_dels = int(input("Введіть к-сть можливих видалень: "))
         lst.delete_value(user_value, user_count_dels)
         print()
